@@ -1,19 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        /* "Build" and "Test" stages omitted */
+
+        stage('Deploy - Staging') {
             steps {
-                echo 'Building'
+		echo 'Deploy - Staging'
             }
         }
-        stage('Test') {
+
+        stage('Sanity check') {
             steps {
-                echo 'Testing'
+                input "Does the staging environment look ok?"
             }
         }
-        stage('Deploy') {
+
+        stage('Deploy - Production') {
             steps {
-                echo 'Deploying'
+		echo 'Deploy - production'
             }
         }
     }
